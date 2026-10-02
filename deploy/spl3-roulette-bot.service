@@ -1,0 +1,24 @@
+[Unit]
+Description=Splatoon 3 Discord weapon roulette bot
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=spl3bot
+Group=spl3bot
+WorkingDirectory=/opt/spl3-roulette-bot
+# Replace this with the absolute path returned by: command -v node
+ExecStart=/opt/node-v24.19.0-linux-x64/bin/node /opt/spl3-roulette-bot/dist/index.js
+Environment=NODE_ENV=production
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=30
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
